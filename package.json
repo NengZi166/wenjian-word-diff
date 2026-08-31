@@ -1,0 +1,50 @@
+{
+  "name": "wenjian-word-diff",
+  "version": "0.1.2",
+  "private": true,
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "copy:wasm": "node scripts/copy-docxodus-assets.mjs",
+    "build:launcher": "cmd /c scripts\\build-launcher.cmd",
+    "postinstall": "npm run copy:wasm",
+    "predev": "npm run copy:wasm",
+    "dev": "vinext dev",
+    "dev:offline": "npm run copy:wasm && vite --config vite.offline.config.ts",
+    "prebuild": "npm run copy:wasm",
+    "build": "vinext build",
+    "build:offline": "npm run copy:wasm && vite build --config vite.offline.config.ts",
+    "package:offline": "npm run build:launcher && npm run build:offline && node scripts/package-offline.mjs",
+    "start": "vinext start",
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern offline-dist --ignore-pattern public/vendor"
+  },
+  "dependencies": {
+    "docxodus": "9.2.0",
+    "jszip": "3.10.1",
+    "katex": "0.16.22",
+    "next": "16.3.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.54.1",
+    "@cloudflare/workers-types": "5.20260828.1",
+    "@openai/sites-vite-plugin": "^0.1.0 || ^0.2.0",
+    "@tailwindcss/postcss": "4.2.1",
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "@vitejs/plugin-rsc": "0.5.34",
+    "eslint": "9.39.4",
+    "eslint-config-next": "16.3.3",
+    "react-server-dom-webpack": "19.2.8",
+    "tailwindcss": "4.2.1",
+    "typescript": "5.9.3",
+    "vinext": "1.0.0-beta.8",
+    "vite": "8.2.2",
+    "wrangler": "4.127.0"
+  },
+  "type": "module"
+}
